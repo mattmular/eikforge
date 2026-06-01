@@ -1,24 +1,14 @@
-import sys
 import os
 from dotenv import load_dotenv
-
-from github import Github
-g = Github(os.getenv("GIT_TOKEN"))
-repo = g.get_repo("mattmular/eikforge")
-
-pr = repo.create_pull(
-    title="automated pull",
-    body="pull requested via discord command",
-    head="origin",
-    base="main"
-)
+import subprocess
+import sys
 
 import discord
 from discord import app_commands
 from discord.ext import commands
 
 client = commands.Bot(command_prefix="!",intents=discord.Intents.all())
-MY_GUILD = discord.Object(id=484247847383072769)
+MY_GUILD = discord.Object(id=os.getenv("GUILD_ID"))
 
 
 @client.event
@@ -104,6 +94,13 @@ class PersistentView(discord.ui.View):
         join_embed.add_field(name="Password:", value="beeefcake")
 
         await interaction.response.send_message(embed=join_embed, ephemeral=True)
+
+async def git_pull():
+    try:
+        result = subprocess.run(["git","pull","origin","main"], check=True,capture_output=True,text=True)
+        print(result.stdout)
+    except subprocess.CalledProcessError as e:
+        print(f"Error during git pull: {e.stderr}", file=sys.stderr)
 
 load_dotenv()
 client.run(os.getenv("BOT_TOKEN"))
