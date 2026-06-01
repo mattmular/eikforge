@@ -1,5 +1,3 @@
-#hi this si a test
-
 import os
 from dotenv import load_dotenv
 import subprocess
@@ -10,9 +8,10 @@ from discord import app_commands
 from discord.ext import commands
 
 client = commands.Bot(command_prefix="!",intents=discord.Intents.all())
+
 load_dotenv()
 MY_GUILD = discord.Object(id=os.getenv("GUILD_ID"))
-
+ADMIN_ROLES = [role.strip() for role in os.getenv("ADMIN_ROLES").split(",")]
 
 @client.event
 async def on_ready():
@@ -31,31 +30,28 @@ async def wiki(interaction: discord.Interaction):
         description="Descriptions",
         color=discord.Colour.blue()
         )
-    
     embed.add_field(name="Field 1", value="Hi", inline=True)
     embed.set_footer(text="ID: " + str(interaction.user.id))
 
     view = PersistentView()
 
-
-
     await interaction.response.send_message(embed=embed, view=view)
 
 @client.tree.command(name="gitpull", description="Pulls the latest commit from the git repository", guild=MY_GUILD)
-@commands.has_role(913353937443237888)
+@app_commands.checks.has_any_role(*ADMIN_ROLES)
 async def gitpull(interaction: discord.Interaction):
     await interaction.response.defer()
     await git_pull()
-    await interaction.followup.send("complete")
+    await interaction.followup.send("complete", ephemeral=True)
 
 @client.tree.command(name="restart", description="Restarts the bot", guild=MY_GUILD)
-@app_commands.checks.has_any_role(913353937443237888)
+@app_commands.checks.has_any_role(*ADMIN_ROLES)
 async def restart(interaction: discord.Interaction):
     await interaction.response.send_message("restarting...", ephemeral=True)
     await client.close()
 
 @client.tree.command(name="refresh", description="Refreshes embeds", guild=MY_GUILD)
-@commands.has_role(913353937443237888)
+@app_commands.checks.has_any_role(*ADMIN_ROLES)
 async def refresh(interaction: discord.Interaction):
     await interaction.response.send_message("Embeds have been refreshed")
 
