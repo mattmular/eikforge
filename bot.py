@@ -95,12 +95,13 @@ class PersistentView(discord.ui.View):
 
         await interaction.response.send_message(embed=join_embed, ephemeral=True)
 
-async def git_pull():
+def git_pull():
     try:
         result = subprocess.run(["git","pull","origin","main"], check=True,capture_output=True,text=True)
         print(result.stdout)
     except subprocess.CalledProcessError as e:
         print(f"Error during git pull: {e.stderr}", file=sys.stderr)
 
+git_pull()
 load_dotenv()
 client.run(os.getenv("BOT_TOKEN"))
