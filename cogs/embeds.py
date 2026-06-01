@@ -27,6 +27,15 @@ class Embeds(commands.Cog):
             json.dump(private, file)
         await interaction.response.send_message(f"Set the server IP to {ip}")
 
+    @app_commands.command(name="set-password", description="Sets the server password")
+    @app_commands.guilds(MY_GUILD)
+    @app_commands.checks.has_any_role(*ADMIN_ROLES)
+    async def setip(self, interaction: discord.Interaction, passw: str):
+        private["password"] = passw
+        with open("private.json","w") as file:
+            json.dump(private, file)
+        await interaction.response.send_message(f"Set the server password to {passw}")
+
     @app_commands.command(name="wiki", description="information")
     @app_commands.guilds(MY_GUILD)
     async def wiki(self, interaction: discord.Interaction):
@@ -57,7 +66,7 @@ class PersistentView(discord.ui.View):
     async def joinInstructions_button(self, interaction: discord.Interaction, button: discord.ui.Button):
         join_embed = discord.Embed(title="How to Join", color=discord.Colour.red())
         join_embed.add_field(name="Server IP:", value=private["ip"])
-        join_embed.add_field(name="Password:", value="beeefcake")
+        join_embed.add_field(name="Password:", value=private["pass"])
 
         await interaction.response.send_message(embed=join_embed, ephemeral=True)
 
