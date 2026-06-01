@@ -66,7 +66,7 @@ class PersistentView(discord.ui.View):
     async def joinInstructions_button(self, interaction: discord.Interaction, button: discord.ui.Button):
         join_embed = discord.Embed(title="How to Join", color=discord.Colour.red())
         join_embed.add_field(name="Server IP:", value=private["ip"])
-        join_embed.add_field(name="Password:", value=private["pass"])
+        join_embed.add_field(name="Password:", value=private["password"])
 
         await interaction.response.send_message(embed=join_embed, ephemeral=True)
 
