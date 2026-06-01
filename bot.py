@@ -1,11 +1,24 @@
-import discord
-from discord.ext import commands
+import sys
 import os
 from dotenv import load_dotenv
 
-intents = discord.Intents.all()
-client = commands.Bot(command_prefix="!",intents=intents)
-MY_GUILD = discord.Object(id=1493321295293841498)
+from github import Github
+g = Github(os.getenv("GIT_TOKEN"))
+repo = g.get_repo("mattmular/eikforge")
+
+pr = repo.create_pull(
+    title="automated pull",
+    body="pull requested via discord command",
+    head="origin",
+    base="main"
+)
+
+import discord
+from discord import app_commands
+from discord.ext import commands
+
+client = commands.Bot(command_prefix="!",intents=discord.Intents.all())
+MY_GUILD = discord.Object(id=484247847383072769)
 
 
 @client.event
@@ -19,7 +32,7 @@ async def on_ready():
         print(f"Error syncing commands: {e}")
 
 @client.tree.command(name="wiki", description="information", guild=MY_GUILD)
-async def ping(interaction: discord.Interaction):
+async def wiki(interaction: discord.Interaction):
     embed = discord.Embed(
         title="Title",
         description="Descriptions",
@@ -34,6 +47,44 @@ async def ping(interaction: discord.Interaction):
 
 
     await interaction.response.send_message(embed=embed, view=view)
+
+@client.tree.command(name="gitpull", description="Pulls the latest commit from the git repository", guild=MY_GUILD)
+@commands.has_role(913353937443237888)
+async def gitpull(interaction: discord.Interaction):
+    await interaction.response.send_message("restarting...")
+
+@client.tree.command(name="restart", description="Restarts the bot", guild=MY_GUILD)
+@app_commands.checks.has_any_role(913353937443237888)
+async def restart(interaction: discord.Interaction):
+    await interaction.response.send_message("restarting...", ephemeral=True)
+    await client.close()
+
+@client.tree.command(name="refresh", description="Refreshes embeds", guild=MY_GUILD)
+@commands.has_role(913353937443237888)
+async def refresh(interaction: discord.Interaction):
+    await interaction.response.send_message("Embeds have been refreshed")
+
+@client.tree.error
+async def on_app_command_error(interaction: discord.Interaction, error: app_commands.AppCommandError):
+
+    if isinstance(error, (app_commands.MissingRole, app_commands.MissingAnyRole)):
+
+        await interaction.response.send_message(
+            "insufficient permissions", 
+            ephemeral=True
+        )
+        return # Stop execution here so it doesn't print to console
+        
+    # Catch other check failures (like cooldowns)
+    elif isinstance(error, app_commands.CommandOnCooldown):
+        await interaction.response.send_message(
+            f"Command is on cooldown. Try again in {error.retry_after:.1f}s", 
+            ephemeral=True
+        )
+        return
+
+    # Print any other unexpected bugs to your terminal so you can debug them
+    print(f"Sorry we ran into an error processing your command: {error}")
 
 class PersistentView(discord.ui.View):
     def __init__(self):
