@@ -30,7 +30,7 @@ class Embeds(commands.Cog):
     @app_commands.command(name="set-password", description="Sets the server password")
     @app_commands.guilds(MY_GUILD)
     @app_commands.checks.has_any_role(*ADMIN_ROLES)
-    async def setip(self, interaction: discord.Interaction, passw: str):
+    async def setpass(self, interaction: discord.Interaction, passw: str):
         private["password"] = passw
         with open("private.json","w") as file:
             json.dump(private, file)

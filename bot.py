@@ -32,9 +32,9 @@ async def on_ready():
 @client.tree.command(name="gitpull", description="Pulls the latest commit from the git repository", guild=MY_GUILD)
 @app_commands.checks.has_any_role(*ADMIN_ROLES)
 async def gitpull(interaction: discord.Interaction):
-    await interaction.response.defer()
+    await interaction.response.defer(ephemeral=True)
     await git_pull()
-    await interaction.followup.send("complete", ephemeral=True)
+    await interaction.followup.send_message("complete")
 
 @client.tree.command(name="restart", description="Restarts the bot", guild=MY_GUILD)
 @app_commands.checks.has_any_role(*ADMIN_ROLES)
