@@ -2,7 +2,8 @@
 :loop
 echo [%date% %time%] Starting Eikforge BOT...
 
-python "%~dp0bot.py"
+cd /d "%~dp0"
+python bot.py
 
 echo [%date% %time%] Script ended or crashed. Restarting in 5 seconds...
 timeout /t 5 /nobreak >nul

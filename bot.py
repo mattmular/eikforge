@@ -10,6 +10,7 @@ from discord import app_commands
 from discord.ext import commands
 
 client = commands.Bot(command_prefix="!",intents=discord.Intents.all())
+load_dotenv()
 MY_GUILD = discord.Object(id=os.getenv("GUILD_ID"))
 
 
@@ -106,5 +107,5 @@ async def git_pull():
     except subprocess.CalledProcessError as e:
         print(f"Error during git pull: {e.stderr}", file=sys.stderr)
 
-load_dotenv()
+
 client.run(os.getenv("BOT_TOKEN"))
