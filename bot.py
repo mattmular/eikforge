@@ -12,7 +12,7 @@ client = commands.Bot(command_prefix="!",intents=discord.Intents.all())
 
 load_dotenv()
 MY_GUILD = discord.Object(id=os.getenv("GUILD_ID"))
-ADMIN_ROLES = [role.strip() for role in os.getenv("ADMIN_ROLES").split(",")]
+ADMIN_ROLES = [int(role.strip()) for role in os.getenv("ADMIN_ROLES").split(",")]
 
 with open("private.json", "r") as file:
     private = json.load(file)
