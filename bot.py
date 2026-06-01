@@ -41,7 +41,9 @@ async def wiki(interaction: discord.Interaction):
 @client.tree.command(name="gitpull", description="Pulls the latest commit from the git repository", guild=MY_GUILD)
 @commands.has_role(913353937443237888)
 async def gitpull(interaction: discord.Interaction):
-    await interaction.response.send_message("restarting...")
+    await interaction.response.defer()
+    await git_pull()
+    await interaction.followup.send("complete")
 
 @client.tree.command(name="restart", description="Restarts the bot", guild=MY_GUILD)
 @app_commands.checks.has_any_role(913353937443237888)
@@ -95,13 +97,12 @@ class PersistentView(discord.ui.View):
 
         await interaction.response.send_message(embed=join_embed, ephemeral=True)
 
-def git_pull():
+async def git_pull():
     try:
         result = subprocess.run(["git","pull","origin","main"], check=True,capture_output=True,text=True)
         print(result.stdout)
     except subprocess.CalledProcessError as e:
         print(f"Error during git pull: {e.stderr}", file=sys.stderr)
 
-git_pull()
 load_dotenv()
 client.run(os.getenv("BOT_TOKEN"))
