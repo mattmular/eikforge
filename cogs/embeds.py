@@ -41,7 +41,7 @@ class Embeds(commands.Cog):
     async def wiki(self, interaction: discord.Interaction):
         embed = discord.Embed(
             title="Eikforge - Server Wiki",
-            description="Welcome to Eikforge! Our server aspires to create a highly immersive world and community bound together by challenging gameplay modifiers. This season our goal is to develop every inch of the world. Our server caters to highly experienced players looking for something to get absorbed in, but we're eager to help newer get acquainted with the gameplay style!",
+            description="Welcome to Eikforge! Our server aspires to create a highly immersive world and community bound together by challenging gameplay modifiers. This season our goal is to develop every inch of the world. Our server caters to highly experienced players looking for something to get absorbed in, but we're eager to help newer players get acquainted with the gameplay style!",
             color=discord.Colour(0x54ad60)
             )
         embed.add_field(name="World Settings", value="- **No Map**\n- **No Portals**\n- **Combat:** Custom ~ VeryHigh\n- **Raids:** Custom ~ MuchMore\n- **Resource Rate:** 1x\n- **Building Material Resource Rate:** 3x (Experimental)", inline=False)
@@ -67,10 +67,9 @@ class WikiView(discord.ui.View):
     @discord.ui.button(label="Mods", style=discord.ButtonStyle.primary)
     async def mods_button(self,interaction: discord.Interaction, button: discord.ui.Button):
         embed = discord.Embed(title="Mods Policy", description= "EIKFORGE IS VANILLA FRIENDLY\n\nWe have a lenient QOL mods policy but we intend to maintain the culture of collaborative, balanced, and fair progression. Since we welcome crossplay it's important those players feel included as well. If you have a restrictive schedule and rely on certain mods to keep up with the server's progression, you can ping a @Jarl to ask for an exception.", color=discord.Colour(0xb674ea))
-        embed.add_field(name="Greylisted Mods", value="- **FiresDiscordIntegration:** Highly recommended to benefit from chat features\n- **Gizmo**\n- **InstantComfort**\n- **GammaOfNightLights**\n- **FirstPersonMode**\n- **MorDoor**\n- **AutoRepair**\n- **AzuAreaRepair**\n- **UsefulPaths** (RustyMods)\n- **NoBuildDust**\n- **MassFarming**\n- **PlantEverything: COSMETIC ONLY** We want to enforce the balancing restrictions imposed by no portal gameplay", inline=False)
+        embed.add_field(name="Greylisted Mods", value="- **FiresDiscordIntegration:** Highly recommended to benefit from chat features\n- **Gizmo**\n- **InstantComfort**\n- **GammaOfNightLights**\n- **FirstPersonMode**\n- **MorDoor**\n- **AutoRepair**\n- **AzuAreaRepair**\n- **UsefulPaths** (RustyMods)\n- **NoBuildDust**\n- **MassFarming**\n- **PlantEverything**", inline=False)
+        embed.add_field(name="Server Side Mods", value="- **BetterNetworking** (tibijczyk)\n- **Server_devcommands**\n- **Expand World Prefabs:** Applies custom gameplay features\n- **FiresDiscordIntegration**\n- **PlantEverything**\n- **UsefulPaths**\n- **Cron Job**\n- **LocalizationCache**", inline=False)
         embed.add_field(name="Dependencies", value="- **YamlDotNet**\n- **JsonDotNET**", inline=False)
-        embed.add_field(name="Server Side Mods", value="- **BetterNetworking** (tibijczyk)\n- **Expand World Prefabs:** Applies custom gameplay features\n- **FiresDiscordIntegration**\n- **Cron Job**\n- **LocalizationCache**", inline=False)
-        
 
         view = ModsView()
         
@@ -88,11 +87,23 @@ class ModsView(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
     
+    @discord.ui.button(label="r2modman Setup", style=discord.ButtonStyle.primary)
+    async def r2modman_button(self, interaction: discord.Interaction, button: discord.ui.Button):
+        embed = discord.Embed(title="Starter Pack", description="We'll help you get set up with a starter mod pack of curated mods that we recommend.", color=discord.Colour(0x0785cb))
+        embed.set_thumbnail(url="https://thunderstore.io/thumbnail-serve/repository/icons/ebkr-r2modman-3.2.17.png/?width=256&height=256")
+        embed.add_field(name="STEPS", value="1. Install [r2modman](https://thunderstore.io/package/ebkr/r2modman/) from the Thunderstore by clicking **Manual Download**.\n2. Run the application and select Valheim.\n3. In the Profile selection screen click **Import / Update.**\n4. Select **From code**.\n5. Paste this code `019e8836-364e-1208-870c-8e95d2c1929a` into the text box and select **Continue** then **Import**.\n6. Click on the profile and then **Select profile**.\n7. In the top left click **Start modded** to run Valheim with the mods installed.", inline=False)
+        await interaction.response.send_message(embed=embed, ephemeral=True)
+
+    @discord.ui.button(label="FDI Setup", style=discord.ButtonStyle.primary)
+    async def fdi_button(self, interaction: discord.Interaction, button: discord.ui.Button):
+        embed = discord.Embed(title="FiresDiscordIntegration Setup", description="This mod requires a bit of setup to be able to see discord chat in-game. If you used the r2modman setup pack you can ignore this.", color=discord.Colour(0xb674ea))
+        embed.set_thumbnail(url="https://thunderstore.io/thumbnail-serve/repository/icons/VerdantsAscent-FiresDiscordIntegration-1.0.1.png/?width=256&height=256")
+        embed.add_field(name="STEPS", value="1. Install [FiresDiscordIntegration](https://thunderstore.io/c/valheim/p/VerdantsAscent/FiresDiscordIntegration/) and anything that enables JereKuusela's Server chat such as [Server_devcommands](https://thunderstore.io/c/valheim/p/JereKuusela/Server_devcommands/).\n2. Ensure **Server chat** is set to **true** in the **Server_devcommands** config.", inline=False)
+        await interaction.response.send_message(embed=embed, ephemeral=True)
+
     @discord.ui.button(label="EWP Scripts", style=discord.ButtonStyle.primary)
-    async def modifiers_button(self, interaction: discord.Interaction, button: discord.ui.Button):
+    async def ewp_button(self, interaction: discord.Interaction, button: discord.ui.Button):
         await interaction.response.send_message(file=discord.File("cogs/ewp.zip"), ephemeral=True)
-
-
 
 async def setup(client):
     await client.add_cog(Embeds(client))
