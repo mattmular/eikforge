@@ -91,7 +91,7 @@ class ModsView(discord.ui.View):
     async def r2modman_button(self, interaction: discord.Interaction, button: discord.ui.Button):
         embed = discord.Embed(title="Starter Pack", description="We'll help you get set up with a starter mod pack of curated mods that we recommend.", color=discord.Colour(0x0785cb))
         embed.set_thumbnail(url="https://thunderstore.io/thumbnail-serve/repository/icons/ebkr-r2modman-3.2.17.png/?width=256&height=256")
-        embed.add_field(name="STEPS", value="1. Install [r2modman](https://thunderstore.io/package/ebkr/r2modman/) from the Thunderstore by clicking **Manual Download**.\n2. Run the application and select Valheim.\n3. In the Profile selection screen click **Import / Update.**\n4. Select **From code**.\n5. Paste this code `019e88ed-564b-41b8-4550-a1b6d0af9ecf` into the text box and select **Continue** then **Import**.\n6. Click on the profile and then **Select profile**.\n7. In the top left click **Start modded** to run Valheim with the mods installed.", inline=False)
+        embed.add_field(name="STEPS", value="1. Install [r2modman](https://thunderstore.io/package/ebkr/r2modman/) from the Thunderstore by clicking **Manual Download**.\n2. Run the application and select Valheim.\n3. In the Profile selection screen click **Import / Update.**\n4. Select **From code**.\n5. Paste this code `019e8a0e-c631-1d31-9810-32e1eb055a73` into the text box and select **Continue** then **Import**.\n6. Click on the profile and then **Select profile**.\n7. In the top left click **Start modded** to run Valheim with the mods installed.", inline=False)
         await interaction.response.send_message(embed=embed, ephemeral=True)
 
     @discord.ui.button(label="FDI Setup", style=discord.ButtonStyle.primary)
