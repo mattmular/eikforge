@@ -80,6 +80,7 @@ class WikiView(discord.ui.View):
     async def modifiers_button(self,interaction: discord.Interaction, button: discord.ui.Button):
         embed = discord.Embed(title="Server Modifiers", description= "We use a set of custom modifiers to curate an immersive experience with an emphasis on developing the world first and exploring second.", color=discord.Colour(0xf44020))
         embed.add_field(name="Combat Modifiers", value="- **VeryHard**", inline=False)
+        embed.add_field(name="Death Penalty", value="- **Normal**", inline=False)
         embed.add_field(name="Resources", value="- **1x**\n-  **3x** `Wood, Finewood, Corewood, Yggdrasilwood, Ashwood, Stone, Marble, Grausten, Coal, Tar, Wisps, Red Jute, Blue Jute, Crystal` (warning: feature is experimental and not 100% consistent)", inline=False)
         await interaction.response.send_message(embed=embed, ephemeral=True)
 
