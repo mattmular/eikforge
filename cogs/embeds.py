@@ -40,8 +40,8 @@ class Embeds(commands.Cog):
     @app_commands.guilds(MY_GUILD)
     async def wiki(self, interaction: discord.Interaction):
         embed = discord.Embed(
-            title="Title",
-            description="Descriptions",
+            title="NEW Title",
+            description="This is the NEW Description after refresh has been ran!",
             color=discord.Colour.blue()
             )
         embed.add_field(name="Field 1", value="Hi", inline=True)
@@ -50,12 +50,6 @@ class Embeds(commands.Cog):
         view = PersistentView()
 
         await interaction.response.send_message(embed=embed, view=view)
-
-    @app_commands.command(name="refreshTEST", description="tests refreesh function")
-    @app_commands.guilds(MY_GUILD)
-    @app_commands.checks.has_any_role(*ADMIN_ROLES)
-    async def wiki(self, interaction: discord.Interaction):
-        await interaction.response.send_message("HI")
 
 class PersistentView(discord.ui.View):
     def __init__(self):
