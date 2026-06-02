@@ -40,8 +40,8 @@ class Embeds(commands.Cog):
     @app_commands.guilds(MY_GUILD)
     async def wiki(self, interaction: discord.Interaction):
         embed = discord.Embed(
-            title="NEW Title",
-            description="This is the NEW Description after refresh has been ran!",
+            title="NEW NEW Title",
+            description="This is the NEW NEW Description after refresh has been ran!",
             color=discord.Colour.blue()
             )
         embed.add_field(name="Field 1", value="Hi", inline=True)
