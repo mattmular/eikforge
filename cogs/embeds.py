@@ -25,7 +25,7 @@ class Embeds(commands.Cog):
         private["ip"] = ip
         with open("private.json","w") as file:
             json.dump(private, file)
-        await interaction.response.send_message(f"Set the server IP to {ip}")
+        await interaction.response.send_message(f"Set the server IP to {ip}", ephemeral=True)
 
     @app_commands.command(name="set-password", description="Sets the server password")
     @app_commands.guilds(MY_GUILD)
@@ -34,7 +34,7 @@ class Embeds(commands.Cog):
         private["password"] = passw
         with open("private.json","w") as file:
             json.dump(private, file)
-        await interaction.response.send_message(f"Set the server password to {passw}")
+        await interaction.response.send_message(f"Set the server password to {passw}", ephemeral=True)
 
     @app_commands.command(name="wiki", description="information")
     @app_commands.guilds(MY_GUILD)
@@ -50,6 +50,12 @@ class Embeds(commands.Cog):
         view = PersistentView()
 
         await interaction.response.send_message(embed=embed, view=view)
+
+    @app_commands.command(name="refreshTEST", description="tests refreesh function")
+    @app_commands.guilds(MY_GUILD)
+    @app_commands.checks.has_any_role(*ADMIN_ROLES)
+    async def wiki(self, interaction: discord.Interaction):
+        await interaction.response.send_message("HI")
 
 class PersistentView(discord.ui.View):
     def __init__(self):
