@@ -34,7 +34,7 @@ async def on_ready():
 async def gitpull(interaction: discord.Interaction):
     await interaction.response.defer(ephemeral=True)
     await git_pull()
-    await interaction.followup.send_message("complete")
+    await interaction.followup.send("complete")
 
 @client.tree.command(name="restart", description="Restarts the bot", guild=MY_GUILD)
 @app_commands.checks.has_any_role(*ADMIN_ROLES)
