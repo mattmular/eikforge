@@ -64,6 +64,21 @@ class Embeds(commands.Cog):
     @app_commands.guilds(MY_GUILD)
     async def join(self, interaction: discord.Interaction):
         await interaction.response.send_message(embed=JoinDetails)
+    
+    @app_commands.command(name="screenshotwebhook", description="Webhooks for screenshot uploads")
+    @app_commands.guilds(MY_GUILD)
+    async def screenshots(self, interaction: discord.Interaction):
+        embed = discord.Embed(
+            title="Discord Screenshot Webhooks",
+            description="Install [Discord_Screenshots](https://thunderstore.io/c/valheim/p/warpalicious/Discord_Screenshots/) and add these URLs to the config to let your client post screencaps and deaths directly to our pictures channel!",
+            url="https://thunderstore.io/c/valheim/p/warpalicious/Discord_Screenshots/",
+            color=discord.Color(0x7cbcff)
+        )
+        embed.set_thumbnail(url="https://thunderstore.io/thumbnail-serve/repository/icons/warpalicious-Discord_Screenshots-1.6.1.png/?width=256&height=256")
+        embed.add_field(name="[Player Capture Webhook]", value="`URL = https://discord.com/api/webhooks/1511382668200382525/9ohSupu_0OjXZxXnctHvwlo1t2WgBcCqD2OhAxgIt4tZkqTclNaI3g9oTKpdl7bm0jLn`", inline=False)
+        embed.add_field(name="[Webhook]", value="`URL = https://discord.com/api/webhooks/1511382668200382525/9ohSupu_0OjXZxXnctHvwlo1t2WgBcCqD2OhAxgIt4tZkqTclNaI3g9oTKpdl7bm0jLn`", inline=False)
+        embed.set_footer(text="alternatively you can copy the attached config file")
+        await interaction.response.send_message(embed=embed, file=discord.File("cogs/warpalicious.discordScreenshots.cfg"))
 
     @app_commands.command(name="bshelp", description="boss scheduler help")
     @app_commands.guilds(MY_GUILD)

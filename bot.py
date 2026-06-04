@@ -1,7 +1,6 @@
 import sys
 import os
 from dotenv import load_dotenv
-import json
 import subprocess
 
 import discord
