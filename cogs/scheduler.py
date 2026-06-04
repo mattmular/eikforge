@@ -352,7 +352,7 @@ class BossView(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
     
-    @discord.ui.button(label="Let's Go", style=discord.ButtonStyle.success, custom_id="persistent:boss_ready")
+    @discord.ui.button(label="Let's Go", style=discord.ButtonStyle.success, custom_id=f"{MY_GUILD}:boss_ready")
     async def ready_button(self, interaction: discord.Interaction, button: discord.ui.Button):
         message = await fetchBossMessage(interaction.client)
         if not message:
@@ -372,7 +372,7 @@ class BossView(discord.ui.View):
             await createBossPoll(interaction.client, private["default-poll-template"])
             
     
-    @discord.ui.button(label="Not Yet", style=discord.ButtonStyle.danger, custom_id="persistent:boss_wait")
+    @discord.ui.button(label="Not Yet", style=discord.ButtonStyle.danger, custom_id=f"{MY_GUILD}:boss_wait")
     async def wait_button(self, interaction: discord.Interaction, button: discord.ui.Button):
         message = await fetchBossMessage(interaction.client)
         if not message:
@@ -385,7 +385,7 @@ class BossView(discord.ui.View):
         else:
             await interaction.response.send_message("Unfortunately the vote is already underway. But if enough players rescind their votes, the moderators may decide to cancel the fight!", ephemeral=True)
 
-    @discord.ui.button(label="Location", style=discord.ButtonStyle.primary, custom_id="persistent:boss_location")
+    @discord.ui.button(label="Location", style=discord.ButtonStyle.primary, custom_id=f"{MY_GUILD}:boss_location")
     async def locate_button(self, interaction: discord.Interaction, button: discord.ui.Button):
         await interaction.response.send_message("Location not found", ephemeral=True)
 

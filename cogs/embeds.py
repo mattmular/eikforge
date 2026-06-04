@@ -103,11 +103,11 @@ class WikiView(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
 
-    @discord.ui.button(label="How to Join", style=discord.ButtonStyle.primary, custom_id="persistent:wiki_join")
+    @discord.ui.button(label="How to Join", style=discord.ButtonStyle.primary, custom_id=f"{MY_GUILD}:wiki_join")
     async def joinDetails_button(self, interaction: discord.Interaction, button: discord.ui.Button):
         await interaction.response.send_message(embed=JoinDetails, ephemeral=True)
 
-    @discord.ui.button(label="Mods", style=discord.ButtonStyle.primary, custom_id="persistent:wiki_mods")
+    @discord.ui.button(label="Mods", style=discord.ButtonStyle.primary, custom_id=f"{MY_GUILD}:wiki_mods")
     async def mods_button(self,interaction: discord.Interaction, button: discord.ui.Button):
         embed = discord.Embed(title="Mods Policy", description= "EIKFORGE IS VANILLA FRIENDLY\n\nWe have a lenient QOL mods policy but we intend to maintain the culture of collaborative, slow, and fair progression. Since we welcome crossplay it's important those players feel included as well. If you have a restrictive schedule and rely on certain mods to keep up with the server's progression, you can ping a @Jarl to ask for an exception.", color=discord.Colour(0xb674ea))
         embed.add_field(name="Greylisted Mods", value="These are strictly mods with gameplay adjustments we have made exceptions for, QOL mods are also allowed but do not need to be listed.\n- **Gizmo**\n- **InstantComfort**\n- **ComfyAddAllFuel**\n- **Sailing** (Smoothbrain)\n- **MorDoor**\n- **AutoRepair**\n- **AzuAreaRepair**\n- **UsefulPaths** (RustyMods)\n- **MassFarming**", inline=False)
@@ -118,7 +118,7 @@ class WikiView(discord.ui.View):
         
         await interaction.response.send_message(embed=embed, view=view, ephemeral=True)
     
-    @discord.ui.button(label="Modifiers", style=discord.ButtonStyle.primary, custom_id="persistent:wiki_modifiers")
+    @discord.ui.button(label="Modifiers", style=discord.ButtonStyle.primary, custom_id=f"{MY_GUILD}:wiki_modifiers")
     async def modifiers_button(self,interaction: discord.Interaction, button: discord.ui.Button):
         embed = discord.Embed(title="Server Modifiers", description= "We use a set of custom modifiers to curate an immersive experience with an emphasis on developing the world first and exploring second.", color=discord.Colour(0xf44020))
         embed.add_field(name="Combat Modifiers", value="- **VeryHard**", inline=False)
@@ -130,7 +130,7 @@ class ModsView(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
     
-    @discord.ui.button(label="r2modman Setup", style=discord.ButtonStyle.primary, custom_id="persistent:mods_r2modman")
+    @discord.ui.button(label="r2modman Setup", style=discord.ButtonStyle.primary, custom_id=f"{MY_GUILD}:mods_r2modman")
     async def r2modman_button(self, interaction: discord.Interaction, button: discord.ui.Button):
         embed = discord.Embed(title="Starter Pack", description="We'll help you get set up with a starter mod pack of curated mods that we recommend.", color=discord.Colour(0x0785cb))
         embed.set_thumbnail(url="https://thunderstore.io/thumbnail-serve/repository/icons/ebkr-r2modman-3.2.17.png/?width=256&height=256")
@@ -144,7 +144,7 @@ class ModsView(discord.ui.View):
     #    embed.add_field(name="STEPS", value="1. Install [FiresDiscordIntegration](https://thunderstore.io/c/valheim/p/VerdantsAscent/FiresDiscordIntegration/) and anything that enables JereKuusela's Server chat such as [Server_devcommands](https://thunderstore.io/c/valheim/p/JereKuusela/Server_devcommands/).\n2. Ensure **Server chat** is set to **true** in the **Server_devcommands** config.", inline=False)
     #    await interaction.response.send_message(embed=embed, ephemeral=True)
 
-    @discord.ui.button(label="EWP Scripts", style=discord.ButtonStyle.primary, custom_id="persistent:mods_ewp")
+    @discord.ui.button(label="EWP Scripts", style=discord.ButtonStyle.primary, custom_id=f"{MY_GUILD}:mods_ewp")
     async def ewp_button(self, interaction: discord.Interaction, button: discord.ui.Button):
         await interaction.response.send_message(file=discord.File("cogs/ewp.zip"), ephemeral=True)
 
