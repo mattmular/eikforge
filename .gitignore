@@ -1,3 +1,4 @@
 .env
-private.json
+embeds.json
+boss.json
 **/__pycache__/

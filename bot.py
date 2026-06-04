@@ -14,9 +14,6 @@ load_dotenv()
 MY_GUILD = discord.Object(id=os.getenv("GUILD_ID"))
 ADMIN_ROLES = [int(role.strip()) for role in os.getenv("ADMIN_ROLES").split(",")]
 
-with open("private.json", "r") as file:
-    private = json.load(file)
-
 @client.event
 async def on_ready():
     print(f'Logged in as {client.user} (ID: {client.user.id})')
@@ -50,8 +47,6 @@ async def refresh(interaction: discord.Interaction):
         await interaction.response.send_message("Embeds have been refreshed", ephemeral=True)
     except Exception as e:
         await interaction.response.send_message(f"Failed to reload embeds.\nError: `{e}`", ephemeral=True) 
-
-
 
 @client.tree.error
 async def on_app_command_error(interaction: discord.Interaction, error: app_commands.AppCommandError):
