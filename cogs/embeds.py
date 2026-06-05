@@ -71,7 +71,7 @@ class Embeds(commands.Cog):
 
     @app_commands.command(name="r2modman", description="r2modman setup")
     @app_commands.guilds(MY_GUILD)
-    async def join(self, interaction: discord.Interaction):
+    async def r2command(self, interaction: discord.Interaction):
         await interaction.response.send_message(embed=r2Setup)
     
     @app_commands.command(name="screenshotwebhook", description="Webhooks for screenshot uploads")
