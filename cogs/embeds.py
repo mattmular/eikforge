@@ -134,7 +134,7 @@ class WikiView(discord.ui.View):
     @discord.ui.button(label="Mods", style=discord.ButtonStyle.primary, custom_id=f"{MY_GUILD}:wiki_mods")
     async def mods_button(self,interaction: discord.Interaction, button: discord.ui.Button):
         embed = discord.Embed(title="Mods Policy", description= "EIKFORGE IS VANILLA FRIENDLY\n\nWe have a lenient QOL mods policy but we intend to maintain the culture of collaborative, slow, and fair progression. Since we welcome crossplay it's important those players feel included as well. If you have a restrictive schedule and rely on certain mods to keep up with the server's progression, you can ping a @Jarl to ask for an exception.", color=discord.Colour(0xb674ea))
-        embed.add_field(name="Greylisted Mods", value="These are strictly mods with gameplay adjustments we have made exceptions for, mods sctrictly with QOL improvements are not only allowed but encouraged!\n- **Gizmo**\n- **InstantComfort**\n- **ComfyAddAllFuel**\n- **Sailing** (Smoothbrain)\n- **MorDoor**\n- **AutoRepair**\n- **AzuAreaRepair**\n- **UsefulPaths** (RustyMods)\n- **MassFarming**", inline=False)
+        embed.add_field(name="Greylisted Mods", value="These are strictly mods with gameplay adjustments we have made exceptions for, mods with simple QOL improvements are encouraged!\n- **Gizmo**\n- **InstantComfort**\n- **ComfyAddAllFuel**\n- **Sailing** (Smoothbrain)\n- **MorDoor**\n- **AutoRepair**\n- **AzuAreaRepair**\n- **UsefulPaths** (RustyMods)\n- **MassFarming**", inline=False)
         embed.add_field(name="Server Side Mods", value="- **Groups**\n- **BetterNetworking** (tibijczyk)\n- **Expand World Prefabs:** Applies custom gameplay features\n- **Server_devcommands**\n- **FiresDiscordIntegration**\n- **Cron Job**\n- **LocalizationCache**", inline=False)
         embed.add_field(name="Dependencies", value="\n- **YamlDotNet**\n- **JsonDotNET**", inline=False)
 
@@ -145,9 +145,9 @@ class WikiView(discord.ui.View):
     @discord.ui.button(label="Modifiers", style=discord.ButtonStyle.primary, custom_id=f"{MY_GUILD}:wiki_modifiers")
     async def modifiers_button(self,interaction: discord.Interaction, button: discord.ui.Button):
         embed = discord.Embed(title="Server Modifiers", description= "We use a set of custom modifiers to curate an immersive experience with an emphasis on developing the world first and exploring second.", color=discord.Colour(0xf44020))
-        embed.add_field(name="Combat Modifiers", value="- Enemy Damage **+50%** = `enemydamage 150`\n- Enemy HP **+20%** = `playerdamage 80`\n- Enemy Speed and Size **+30%** = `enemyspeedsize 130`\n- Enemy Level Up Chance **20%** = `enemyleveluprate 200`", inline=False)
+        embed.add_field(name="Combat Modifiers", value="- Enemy Damage **+75%** = `enemydamage 175`\n- Enemy HP **+25%** = `playerdamage 75`\n- Enemy Speed and Size **+40%** = `enemyspeedsize 140`\n- Enemy Level Up Chance **20%** = `enemyleveluprate 200`", inline=False)
         embed.add_field(name="Events", value="- [Player Based Events](https://valheim.fandom.com/wiki/Events)\n- Event Rate is configured dynamically based on the amount of players online. In general it will be about double the usual rate.", inline=False)
-        embed.add_field(name="Death Penalty", value="- Skill reduction **7.5%**", inline=False)
+        embed.add_field(name="Death Penalty", value="- Equipped Items Kept\n- Skill reduction **7.5%**", inline=False)
         embed.add_field(name="Resources", value="- **1x**\n-  **3x** `Wood, Finewood, Corewood, Yggdrasilwood, Ashwood, Stone, Marble, Grausten, Coal, Tar, Wisps, Red Jute, Blue Jute, Crystal` (warning: feature is experimental)", inline=False)
         await interaction.response.send_message(embed=embed, ephemeral=True)
 
