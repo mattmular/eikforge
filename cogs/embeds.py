@@ -20,7 +20,7 @@ JoinDetails.add_field(name="Password:", value=private["password"], inline=False)
 
 r2Setup = discord.Embed(title="Starter Pack", description="We'll help you get set up with a starter mod pack of curated mods that we recommend.", color=discord.Colour(0x0785cb))
 r2Setup.set_thumbnail(url="https://thunderstore.io/thumbnail-serve/repository/icons/ebkr-r2modman-3.2.17.png/?width=256&height=256")
-r2Setup.add_field(name="STEPS", value="1. Install [r2modman](https://thunderstore.io/package/ebkr/r2modman/) from the Thunderstore by clicking **Manual Download**.\n2. Run the application and select Valheim.\n3. In the Profile selection screen click **Import / Update.**\n4. Select **From code**.\n5. Paste this code `019e952c-d4b9-e2b5-7544-1d7c43dd9415` into the text box and select **Continue** then **Import**.\n6. Click on the profile and then **Select profile**.\n7. In the top left click **Start modded** to run Valheim with the mods installed.", inline=False)
+r2Setup.add_field(name="STEPS", value="1. Install [r2modman](https://thunderstore.io/package/ebkr/r2modman/) from the Thunderstore by clicking **Manual Download**.\n2. Run the application and select Valheim.\n3. In the Profile selection screen click **Import / Update.**\n4. Select **From code**.\n5. Paste this code `019e98dd-7044-7de0-34e2-fd63ba13b723` into the text box and select **Continue** then **Import**.\n6. Click on the profile and then **Select profile**.\n7. In the top left click **Start modded** to run Valheim with the mods installed.", inline=False)
 
 class Embeds(commands.Cog):
     def __init__(self,client):
@@ -85,7 +85,7 @@ class Embeds(commands.Cog):
         )
         embed.set_thumbnail(url="https://thunderstore.io/thumbnail-serve/repository/icons/warpalicious-Discord_Screenshots-1.6.1.png/?width=256&height=256")
         embed.add_field(name="[Player Capture Webhook]", value="`URL = https://discord.com/api/webhooks/1511382668200382525/9ohSupu_0OjXZxXnctHvwlo1t2WgBcCqD2OhAxgIt4tZkqTclNaI3g9oTKpdl7bm0jLn`", inline=False)
-        embed.add_field(name="[Webhook]", value="`URL = https://discord.com/api/webhooks/1511382668200382525/9ohSupu_0OjXZxXnctHvwlo1t2WgBcCqD2OhAxgIt4tZkqTclNaI3g9oTKpdl7bm0jLn`", inline=False)
+        embed.add_field(name="[Webhook]", value="`URL = https://discord.com/api/webhooks/1512509167259095182/YdFMVDpMZkh-xjiO-7ZPAsSszEf9M19osVgmqnI7b1crejztnxdXIRYgO2lSESnlVHnh`", inline=False)
         embed.set_footer(text="alternatively you can copy the attached config file")
         await interaction.response.send_message(embed=embed, file=discord.File("cogs/warpalicious.discordScreenshots.cfg"))
 
@@ -147,7 +147,7 @@ class WikiView(discord.ui.View):
         embed = discord.Embed(title="Server Modifiers", description= "We use a set of custom modifiers to curate an immersive experience with an emphasis on developing the world first and exploring second.", color=discord.Colour(0xf44020))
         embed.add_field(name="Combat Modifiers", value="- Enemy Damage **+75%** = `enemydamage 175`\n- Enemy HP **+25%** = `playerdamage 75`\n- Enemy Speed and Size **+40%** = `enemyspeedsize 140`\n- Enemy Level Up Chance **20%** = `enemyleveluprate 200`", inline=False)
         embed.add_field(name="Events", value="- [Player Based Events](https://valheim.fandom.com/wiki/Events)\n- Event Rate is configured dynamically based on the amount of players online. In general it will be about double the usual rate.", inline=False)
-        embed.add_field(name="Death Penalty", value="- Equipped Items Kept\n- Skill reduction **7.5%**", inline=False)
+        embed.add_field(name="Death Penalty", value="- Keep Equipped Items\n- Skill reduction **7.5%**", inline=False)
         embed.add_field(name="Resources", value="- **1x**\n-  **3x** `Wood, Finewood, Corewood, Yggdrasilwood, Ashwood, Stone, Marble, Grausten, Coal, Tar, Wisps, Red Jute, Blue Jute, Crystal` (warning: feature is experimental)", inline=False)
         await interaction.response.send_message(embed=embed, ephemeral=True)
 
