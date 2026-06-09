@@ -57,7 +57,7 @@ class Embeds(commands.Cog):
             color=discord.Colour(0x54ad60)
             )
         embed.add_field(name="World Settings", value="- **No Map**\n- **No Portals**\n- **Combat:** Custom ~ VeryHigh\n- **Raids:** Dynamic ~ MuchMore\n- **Resource Rate:** 1x\n- **Building Material Resource Rate:** 3x (Experimental)", inline=False)
-        embed.add_field(name="Server Info", value="- **Region:** US-East\n- **Daily Restart:** <t:1779084000:t>", inline=False)
+        embed.add_field(name="Server Info", value="- **Region:** US-East\n- **Daily Restart:** <t:1781031600:t>", inline=False)
         embed.add_field(name="Rules", value="- Brand new character\n- No griefing or stealing\n- No skipping bosses\n- Our general rule for mods is: If it negatively affects others, it is no good. That *includes* pulling ahead and exploring regions beyond the current boss. Check out our full mods policy using the navigation buttons below.", inline=False)
 
         view = WikiView()
