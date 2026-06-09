@@ -20,7 +20,7 @@ JoinDetails.add_field(name="Password:", value=private["password"], inline=False)
 
 r2Setup = discord.Embed(title="Starter Pack", description="We'll help you get set up with a starter mod pack of curated mods that we recommend.", color=discord.Colour(0x0785cb))
 r2Setup.set_thumbnail(url="https://thunderstore.io/thumbnail-serve/repository/icons/ebkr-r2modman-3.2.17.png/?width=256&height=256")
-r2Setup.add_field(name="STEPS", value="1. Install [r2modman](https://thunderstore.io/package/ebkr/r2modman/) from the Thunderstore by clicking **Manual Download**.\n2. Run the application and select Valheim.\n3. In the Profile selection screen click **Import / Update.**\n4. Select **From code**.\n5. Paste this code `019e98dd-7044-7de0-34e2-fd63ba13b723` into the text box and select **Continue** then **Import**.\n6. Click on the profile and then **Select profile**.\n7. In the top left click **Start modded** to run Valheim with the mods installed.", inline=False)
+r2Setup.add_field(name="STEPS", value="1. Install [r2modman](https://thunderstore.io/package/ebkr/r2modman/) from the Thunderstore by clicking **Manual Download**.\n2. Run the application and select Valheim.\n3. In the Profile selection screen click **Import / Update.**\n4. Select **From code**.\n5. Paste this code `019eabd4-e017-8ccb-acc0-6a165f0c3896` into the text box and select **Continue** then **Import**.\n6. Click on the profile and then **Select profile**.\n7. In the top left click **Start modded** to run Valheim with the mods installed.", inline=False)
 
 class Embeds(commands.Cog):
     def __init__(self,client):
@@ -104,13 +104,13 @@ class Embeds(commands.Cog):
     @app_commands.command(name="bswiki", description="boss scheduler wiki")
     @app_commands.guilds(MY_GUILD)
     @app_commands.checks.has_any_role(*ADMIN_ROLES)
-    async def bshelp(self, interaction: discord.Interaction, ephemeral: bool = True):
+    async def bswiki(self, interaction: discord.Interaction, ephemeral: bool = True):
         embed = discord.Embed(
             title="Boss Scheduler Wiki",
             description="THIS EMBED IS ONLY ACCESSIBLE BY ADMINS"
         )
         embed.add_field(name="Basics", value="The scheduler is basically just an interactable message. Players can vote to initiate the boss fight when they are ready, they can also rescind their vote. At the moment there is no way to vote *against* starting the boss fight. It's up to the admins to configure how many people are needed to initate the fight. Once the vote reaches the threshold a poll is automatically generated.", inline=False)
-        embed.add_field(name="Basic Commands", value="""- `/bsschedule` this creates a boss scheduler in the current channel. This should only ever need to be used once unless something goes wrong. Also, it doesn't support multiple schedulers, only one sorry.
+        embed.add_field(name="Basic Commands", value="""- `/bschedule` this creates a boss scheduler in the current channel. This should only ever need to be used once unless something goes wrong. Also, it doesn't support multiple schedulers, only one sorry.
 - `/bsset` set the currently scheduled boss.
 - `/bsnext` progress to the next boss. This resets the vote counter and deletes any existing polls.""", inline=False)
         embed.add_field(name="Advanced Commands", value="""- `/bsfound` not set up yet.
@@ -134,7 +134,7 @@ class WikiView(discord.ui.View):
     @discord.ui.button(label="Mods", style=discord.ButtonStyle.primary, custom_id=f"{MY_GUILD}:wiki_mods")
     async def mods_button(self,interaction: discord.Interaction, button: discord.ui.Button):
         embed = discord.Embed(title="Mods Policy", description= "EIKFORGE IS VANILLA FRIENDLY\n\nWe have a lenient QOL mods policy but we intend to maintain the culture of collaborative, slow, and fair progression. Since we welcome crossplay it's important those players feel included as well. If you have a restrictive schedule and rely on certain mods to keep up with the server's progression, you can ping a @Jarl to ask for an exception.", color=discord.Colour(0xb674ea))
-        embed.add_field(name="Greylisted Mods", value="These are strictly mods with gameplay adjustments we have made exceptions for, mods with simple QOL improvements are encouraged!\n- **Gizmo**\n- **InstantComfort**\n- **ComfyAddAllFuel**\n- **Sailing** (Smoothbrain)\n- **MorDoor**\n- **AutoRepair**\n- **AzuAreaRepair**\n- **UsefulPaths** (RustyMods)\n- **MassFarming**", inline=False)
+        embed.add_field(name="Greylisted Mods", value="These are strictly mods with gameplay adjustments we have made exceptions for, mods with simple QOL improvements are encouraged!\n- **Gizmo**\n- **InstantComfort**\n- **ComfyAddAllFuel**\n- **Sailing** (Smoothbrain)\n- **MorDoor**\n- **AutoRepair**\n- **AzuAreaRepair**\n- **UsefulPaths** (RustyMods)\n- **MassFarming**\n- TopMining", inline=False)
         embed.add_field(name="Server Side Mods", value="- **Groups**\n- **BetterNetworking** (tibijczyk)\n- **Expand World Prefabs:** Applies custom gameplay features\n- **Server_devcommands**\n- **FiresDiscordIntegration**\n- **Cron Job**\n- **LocalizationCache**", inline=False)
         embed.add_field(name="Dependencies", value="\n- **YamlDotNet**\n- **JsonDotNET**", inline=False)
 

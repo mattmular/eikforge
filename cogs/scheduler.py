@@ -45,7 +45,7 @@ class BossScheduler(commands.Cog):
     async def cog_load(self):
         self.client.add_view(BossView())
 
-    @app_commands.command(name="bsschedule", description="Sets the boss scheduler in this channel")
+    @app_commands.command(name="bschedule", description="Sets the boss scheduler in this channel")
     @app_commands.guilds(MY_GUILD)
     @app_commands.checks.has_any_role(*ADMIN_ROLES)
     async def createBossScheduler(self, interaction: discord.Interaction):
