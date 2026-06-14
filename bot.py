@@ -2,6 +2,7 @@ import sys
 import os
 from dotenv import load_dotenv
 import subprocess
+import json
 
 import discord
 from discord import app_commands
@@ -12,6 +13,9 @@ client = commands.Bot(command_prefix="!",intents=discord.Intents.all())
 load_dotenv()
 MY_GUILD = discord.Object(id=os.getenv("GUILD_ID"))
 ADMIN_ROLES = [int(role.strip()) for role in os.getenv("ADMIN_ROLES").split(",")]
+
+with open("params.json", "r") as file:
+    params = json.load(file)
 
 @client.event
 async def on_ready():
@@ -24,6 +28,16 @@ async def on_ready():
         print(f"Synced {len(synced)} command(s) to guild {MY_GUILD.id}")
     except Exception as e:
         print(f"Error syncing commands: {e}")
+
+@client.event
+async def on_member_join(member):
+    channel = await client.fetch_channel(params["joinchannel"])
+    await channel.send(f"New user joined the server: {member.name}")
+
+@client.event
+async def on_member_remove(member):
+    channel = await client.fetch_channel(params["leavechannel"])
+    await channel.send(f"User left the server: {member.name}")
 
 @client.tree.command(name="gitpull", description="Pulls the latest commit from the git repository", guild=MY_GUILD)
 @app_commands.checks.has_any_role(*ADMIN_ROLES)
@@ -46,6 +60,22 @@ async def refresh(interaction: discord.Interaction):
         await interaction.response.send_message("Embeds have been refreshed", ephemeral=True)
     except Exception as e:
         await interaction.response.send_message(f"Failed to reload embeds.\nError: `{e}`", ephemeral=True) 
+
+@client.tree.command(name="joinchannel", description="Sets join notifications to the current channel", guild=MY_GUILD)
+@app_commands.checks.has_any_role(*ADMIN_ROLES)
+async def joinchannel(interaction: discord.Interaction):
+    params["joinchannel"] = interaction.channel_id
+    with open("params.json","w") as file:
+        json.dump(params, file)
+    await interaction.response.send_message("done", ephemeral=True)
+
+@client.tree.command(name="leavechannel", description="Sets leave notifications to the current channel", guild=MY_GUILD)
+@app_commands.checks.has_any_role(*ADMIN_ROLES)
+async def leavechannel(interaction: discord.Interaction):
+    params["leavechannel"] = interaction.channel_id
+    with open("params.json","w") as file:
+        json.dump(params, file)
+    await interaction.response.send_message("done", ephemeral=True)
 
 @client.tree.error
 async def on_app_command_error(interaction: discord.Interaction, error: app_commands.AppCommandError):

@@ -1,4 +1,5 @@
 .env
 embeds.json
 boss.json
+params.json
 **/__pycache__/
