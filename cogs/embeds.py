@@ -53,10 +53,10 @@ class Embeds(commands.Cog):
     async def wiki(self, interaction: discord.Interaction):
         embed = discord.Embed(
             title="Eikforge - Server Wiki",
-            description="Welcome to Eikforge! Our server aspires to create a highly immersive world and community bound together by challenging gameplay modifiers. This season our goal is to develop every inch of the world. Our server caters to highly experienced players looking for something to get absorbed in, but we're eager to help newer players get acquainted with the gameplay style!",
+            description="Welcome to Eikforge! Our server aspires to create a highly immersive world and community bound together by challenging gameplay modifiers.",
             color=discord.Colour(0x54ad60)
             )
-        embed.add_field(name="World Settings", value="- **No Map**\n- **No Portals**\n- **Combat:** Custom ~ VeryHigh\n- **Raids:** Dynamic ~ MuchMore\n- **Resource Rate:** 1x\n- **Building Material Resource Rate:** 3x (Experimental)", inline=False)
+        embed.add_field(name="World Settings", value="- **No Map**\n- **Normal Portals**\n- **Fire Spreads**\n- **Combat:** High\n- **Raids:** Normal\n- **Resource Rate:** 1x", inline=False)
         embed.add_field(name="Server Info", value="- **Region:** US-East\n- **Daily Restart:** <t:1781031600:t>", inline=False)
         embed.add_field(name="Rules", value="- Brand new character\n- No griefing or stealing\n- No skipping bosses\n- Our general rule for mods is: If it negatively affects others, it is no good. That *includes* pulling ahead and exploring regions beyond the current boss. Check out our full mods policy using the navigation buttons below.", inline=False)
 
@@ -144,11 +144,11 @@ class WikiView(discord.ui.View):
     
     @discord.ui.button(label="Modifiers", style=discord.ButtonStyle.primary, custom_id=f"{MY_GUILD}:wiki_modifiers")
     async def modifiers_button(self,interaction: discord.Interaction, button: discord.ui.Button):
-        embed = discord.Embed(title="Server Modifiers", description= "We use a set of custom modifiers to curate an immersive experience with an emphasis on developing the world first and exploring second.", color=discord.Colour(0xf44020))
-        embed.add_field(name="Combat Modifiers", value="- Enemy Damage **+75%** = `enemydamage 175`\n- Enemy HP **+25%** = `playerdamage 75`\n- Enemy Speed and Size **+40%** = `enemyspeedsize 140`\n- Enemy Level Up Chance **20%** = `enemyleveluprate 200`", inline=False)
+        embed = discord.Embed(title="Server Modifiers", description= "Modifiers for the current seed are as follows.", color=discord.Colour(0xf44020))
+        embed.add_field(name="Combat Modifiers", value="- Enemy Damage **+50%** = `enemydamage 150`\n- Enemy HP **+15%** = `playerdamage 85`\n- Enemy Speed and Size **+10%** = `enemyspeedsize 110`\n- Enemy Level Up Chance **12%** = `enemyleveluprate 120`", inline=False)
         embed.add_field(name="Events", value="- [Player Based Events](https://valheim.fandom.com/wiki/Events)\n- Event Rate is configured dynamically based on the amount of players online. In general it will be about double the usual rate.", inline=False)
-        embed.add_field(name="Death Penalty", value="- Keep Equipped Items\n- Skill reduction **7.5%**", inline=False)
-        embed.add_field(name="Resources", value="- **1x**\n-  **3x** `Wood, Finewood, Corewood, Yggdrasilwood, Ashwood, Stone, Marble, Grausten, Coal, Tar, Wisps, Red Jute, Blue Jute, Crystal` (warning: feature is experimental)", inline=False)
+        embed.add_field(name="Death Penalty", value="- Keep Equipped Items\n- **Delete** Un-Equipped Items\n- Skill reduction **5%**", inline=False)
+        #embed.add_field(name="Resources", value="- **1x**\n-  **3x** `Wood, Finewood, Corewood, Yggdrasilwood, Ashwood, Stone, Marble, Grausten, Coal, Tar, Wisps, Red Jute, Blue Jute, Crystal` (warning: feature is experimental)", inline=False)
         await interaction.response.send_message(embed=embed, ephemeral=True)
 
 class ModsView(discord.ui.View):
@@ -166,9 +166,9 @@ class ModsView(discord.ui.View):
     #    embed.add_field(name="STEPS", value="1. Install [FiresDiscordIntegration](https://thunderstore.io/c/valheim/p/VerdantsAscent/FiresDiscordIntegration/) and anything that enables JereKuusela's Server chat such as [Server_devcommands](https://thunderstore.io/c/valheim/p/JereKuusela/Server_devcommands/).\n2. Ensure **Server chat** is set to **true** in the **Server_devcommands** config.", inline=False)
     #    await interaction.response.send_message(embed=embed, ephemeral=True)
 
-    @discord.ui.button(label="EWP Scripts", style=discord.ButtonStyle.primary, custom_id=f"{MY_GUILD}:mods_ewp")
-    async def ewp_button(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await interaction.response.send_message(file=discord.File("cogs/ewp.zip"), ephemeral=True)
+    #@discord.ui.button(label="EWP Scripts", style=discord.ButtonStyle.primary, custom_id=f"{MY_GUILD}:mods_ewp")
+    #async def ewp_button(self, interaction: discord.Interaction, button: discord.ui.Button):
+    #    await interaction.response.send_message(content="These are the scripts we have running on the server, you don't need to install them on your client but if you want to see how they work or use them in your own worlds feel free :)",file=discord.File("cogs/ewp.zip"), ephemeral=True)
 
 async def setup(client):
     await client.add_cog(Embeds(client))
