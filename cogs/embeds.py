@@ -56,7 +56,7 @@ class Embeds(commands.Cog):
             description="Welcome to Eikforge! Our server aspires to create a highly immersive world and community bound together by challenging gameplay modifiers.",
             color=discord.Colour(0x54ad60)
             )
-        embed.add_field(name="World Settings", value="- **No Map**\n- **No Portals**\n- **Fire Spreads**\n- **Combat:** High\n- **Raids:** Normal - Player Based\n- **Resource Rate:** 1x", inline=False)
+        embed.add_field(name="World Settings", value="- **No Map**\n- **No Portals**\n- **Fire Spreads**\n- **Combat:** High\n- **Raids:** More | Player Based\n- **Resource Rate:** 1x", inline=False)
         embed.add_field(name="Server Info", value="- **Region:** US-East\n- **Daily Restart:** <t:1781031600:t>", inline=False)
         embed.add_field(name="Rules", value="- Brand new character\n- No griefing or stealing\n- No skipping bosses\n- Our general rule for mods is: If it negatively affects others, it is no good. That *includes* pulling ahead and exploring regions beyond the current boss. Check out our full mods policy using the navigation buttons below.", inline=False)
 
@@ -147,8 +147,8 @@ class WikiView(discord.ui.View):
         embed = discord.Embed(title="Server Modifiers", description= "Modifiers for the current seed are as follows.", color=discord.Colour(0xf44020))
         embed.add_field(name="World", value="- No Map\n- No Portal\n- Fire Spread", inline=False)
         embed.add_field(name="Combat Modifiers", value="- Enemy Damage **+50%** = `enemydamage 150`\n- Enemy HP **+15%** = `playerdamage 85`\n- Enemy Speed and Size **+10%** = `enemyspeedsize 110`\n- Enemy Level Up Chance **12%** = `enemyleveluprate 120`", inline=False)
-        embed.add_field(name="Events", value="- [Player Based Events](https://valheim.fandom.com/wiki/Events)", inline=False)
-        #embed.add_field(name="Death Penalty", value="- Equipped items dropped\n- **Delete** Un-Equipped Items\n- Skill reduction **7.5%**", inline=False)
+        embed.add_field(name="Events", value="- [Player Based Events](https://valheim.fandom.com/wiki/Events)\n - **33%** chance every **28 minutes** = `eventrate 60`", inline=False)
+        embed.add_field(name="Death Penalty", value="- All items dropped\n- Skill reduction **1%** = `skillreductionrate 10`", inline=False)
         #embed.add_field(name="Resources", value="- **1x**\n-  **3x** `Wood, Finewood, Corewood, Yggdrasilwood, Ashwood, Stone, Marble, Grausten, Coal, Tar, Wisps, Red Jute, Blue Jute, Crystal` (warning: feature is experimental)", inline=False)
         await interaction.response.send_message(embed=embed, ephemeral=True)
 
