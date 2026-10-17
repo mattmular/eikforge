@@ -146,8 +146,9 @@ class WikiView(discord.ui.View):
     async def modifiers_button(self,interaction: discord.Interaction, button: discord.ui.Button):
         embed = discord.Embed(title="Server Modifiers", description= "Modifiers for the current seed are as follows.", color=discord.Colour(0xf44020))
         embed.add_field(name="Combat Modifiers", value="- Enemy Damage **+50%** = `enemydamage 150`\n- Enemy HP **+15%** = `playerdamage 85`\n- Enemy Speed and Size **+10%** = `enemyspeedsize 110`\n- Enemy Level Up Chance **12%** = `enemyleveluprate 120`", inline=False)
-        embed.add_field(name="Events", value="- [Player Based Events](https://valheim.fandom.com/wiki/Events)\n- Event Rate is configured dynamically based on the amount of players online. In general it will be about double the usual rate.", inline=False)
-        embed.add_field(name="Death Penalty", value="- Keep Equipped Items\n- **Delete** Un-Equipped Items\n- Skill reduction **5%**", inline=False)
+        embed.add_field(name="Events", value="- [Player Based Events](https://valheim.fandom.com/wiki/Events)", inline=False)
+        embed.add_field(name="Death Penalty", value="- Equipped items dropped\n- **Delete** Un-Equipped Items\n- Skill reduction **7.5%**", inline=False)
+        embed.add_field(name="Other", value="- No Map\n- No Portal\n- Fire Spread", inline=False)
         #embed.add_field(name="Resources", value="- **1x**\n-  **3x** `Wood, Finewood, Corewood, Yggdrasilwood, Ashwood, Stone, Marble, Grausten, Coal, Tar, Wisps, Red Jute, Blue Jute, Crystal` (warning: feature is experimental)", inline=False)
         await interaction.response.send_message(embed=embed, ephemeral=True)
 
