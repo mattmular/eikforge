@@ -58,8 +58,8 @@ class Embeds(commands.Cog):
             )
         embed.add_field(name="World Settings", value="- **No Map**\n- **No Portals**\n- **Fire Spreads**\n- **Combat:** High\n- **Raids:** More | Player Based\n- **Resource Rate:** 1x", inline=False)
         embed.add_field(name="Server Info", value="- **Region:** US-East\n- **Daily Restart:** <t:1781031600:t>", inline=False)
-        embed.add_field(name="Rules", value="- Brand new character\n- No griefing or stealing\n- No skipping bosses\n- Our general rule for mods is: If it negatively affects others, it is no good. That *includes* pulling ahead and exploring regions beyond the current boss. Check out our full mods policy using the navigation buttons below.", inline=False)
-
+        embed.add_field(name="Rules", value="- No griefing or stealing\n- Respect other players' boundaries and experiences\n- No building within 10 meters of dungeon entrances as regenerating structures can result in build pieces being deleted", inline=False)
+        #Our general rule for mods is: If it negatively affects others, it is no good. That *includes* pulling ahead and exploring regions beyond the current boss. Check out our full mods policy using the navigation buttons below.
         view = WikiView()
 
         await interaction.response.send_message(embed=embed, view=view)
@@ -133,10 +133,11 @@ class WikiView(discord.ui.View):
 
     @discord.ui.button(label="Mods", style=discord.ButtonStyle.primary, custom_id=f"{MY_GUILD}:wiki_mods")
     async def mods_button(self,interaction: discord.Interaction, button: discord.ui.Button):
-        embed = discord.Embed(title="Mods Policy", description= "EIKFORGE IS VANILLA FRIENDLY\n\nWe have a lenient QOL mods policy but we intend to maintain the culture of collaborative, slow, and fair progression. Since we welcome crossplay it's important those players feel included as well. If you have a restrictive schedule and rely on certain mods to keep up with the server's progression, you can ping a @Jarl to ask for an exception.", color=discord.Colour(0xb674ea))
-        embed.add_field(name="Greylisted Mods", value="These are strictly mods with gameplay adjustments we have made exceptions for, mods with simple QOL improvements are encouraged!\n- **Gizmo**\n- **InstantComfort**\n- **ComfyAddAllFuel**\n- **Sailing** (Smoothbrain)\n- **MorDoor**\n- **AutoRepair**\n- **AzuAreaRepair**\n- **UsefulPaths** (RustyMods)\n- **MassFarming**\n- **TopMining**", inline=False)
-        embed.add_field(name="Server Side Mods", value="- **Groups**\n- **BetterNetworking** (tibijczyk)\n- **Expand World Prefabs:** Applies custom gameplay features\n- **Server_devcommands**\n- **FiresDiscordIntegration**\n- **Cron Job**\n- **LocalizationCache**", inline=False)
-        embed.add_field(name="Dependencies", value="\n- **YamlDotNet**\n- **JsonDotNET**", inline=False)
+        embed = discord.Embed(title="Mods Policy", description= "We trust our players to curate their own experience. Currently, we aren't restricting balance or progression so provided you follow the rules, feel free to bring whatever mods fit your desired playstyle.", color=discord.Colour(0xb674ea))
+        #"EIKFORGE IS VANILLA FRIENDLY\n\nWe have a lenient QOL mods policy but we intend to maintain the culture of collaborative, slow, and fair progression. Since we welcome crossplay it's important those players feel included as well. If you have a restrictive schedule and rely on certain mods to keep up with the server's progression, you can ping a @Jarl to ask for an exception.
+        #embed.add_field(name="Greylisted Mods", value="These are strictly mods with gameplay adjustments we have made exceptions for, mods with simple QOL improvements are encouraged!\n- **Gizmo**\n- **InstantComfort**\n- **ComfyAddAllFuel**\n- **Sailing** (Smoothbrain)\n- **MorDoor**\n- **AutoRepair**\n- **AzuAreaRepair**\n- **UsefulPaths** (RustyMods)\n- **MassFarming**\n- **TopMining**", inline=False)
+        embed.add_field(name="Server Side Mods", value="You don't need to install these on your client\n- **BetterNetworking** (tibijczyk)\n- **Upgrade_World**\n- **World_Edit_Commands**\n- **Venture_Location_Reset**\n- **MaxPlayerCount**\n- **Expand World Prefabs**\n- **Server_devcommands**\n- **FiresDiscordIntegration**", inline=False)
+        #embed.add_field(name="Dependencies", value="\n- **YamlDotNet**\n- **JsonDotNET**", inline=False)
 
         view = ModsView()
         
@@ -156,9 +157,9 @@ class ModsView(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
     
-    @discord.ui.button(label="r2modman Setup", style=discord.ButtonStyle.primary, custom_id=f"{MY_GUILD}:mods_r2modman")
-    async def r2modman_button(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await interaction.response.send_message(embed=r2Setup, ephemeral=True)
+    #@discord.ui.button(label="r2modman Setup", style=discord.ButtonStyle.primary, custom_id=f"{MY_GUILD}:mods_r2modman")
+    #async def r2modman_button(self, interaction: discord.Interaction, button: discord.ui.Button):
+    #    await interaction.response.send_message(embed=r2Setup, ephemeral=True)
 
     #@discord.ui.button(label="FDI Setup", style=discord.ButtonStyle.primary)
     #async def fdi_button(self, interaction: discord.Interaction, button: discord.ui.Button):
